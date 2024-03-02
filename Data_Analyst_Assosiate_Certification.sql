@@ -1,3 +1,11 @@
+--Googl Colab Link: https://colab.research.google.com/drive/1-QUTtOA4gTbP9_g11LLZVvpZxXjGAOil?usp=sharing
+
+-- Write your query for task 1 in this cell
+SELECT COUNT(*) AS missing_year
+FROM products
+WHERE year_added IS NULL
+
+
 SELECT 
     product_id, 
     COALESCE(product_type, 'Unknown') AS product_type,
@@ -9,3 +17,20 @@ SELECT
     COALESCE(UPPER(stock_location), 'Unknown') AS stock_location
 FROM 
     products;
+
+-- Write your query for task 3 in this cell
+SELECT product_type,
+    MIN(price) AS min_price,
+    MAX(price) AS max_price
+FROM clean_data
+GROUP BY product_type;
+
+
+-- Write your query for task 4 in this cell
+SELECT
+  product_id,
+  price,
+  average_units_sold
+FROM products
+WHERE (product_type = 'Meat' OR product_type = 'Dairy')
+  AND average_units_sold > 10;
